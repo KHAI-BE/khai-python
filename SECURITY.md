@@ -1,6 +1,6 @@
 # Security policy
 
-Report vulnerabilities in this SDK privately to security@getkhai.ai. Do not open
+Report vulnerabilities in this SDK privately to admin@brise.ai. Do not open
 a public issue for security reports. We acknowledge reports within three
 business days.
 
