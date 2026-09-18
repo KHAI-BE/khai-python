@@ -6,6 +6,10 @@ All notable changes to the Khai Python SDK. Format follows
 ## [Unreleased]
 
 ### Added
+- Release pipeline (`.github/workflows/release.yml`): a `v*` tag builds once,
+  publishes to TestPyPI, smoke-installs from there, then publishes to PyPI via
+  trusted publishing (OIDC, no stored tokens) behind a required reviewer, and
+  creates a GitHub Release with the artifacts.
 - `IngestTurn` now fills `response_id` (UUID4) and `timestamp` (UTC ISO-8601) at
   creation when the caller omits them, so retries are deduplicated server-side
   instead of stored twice.
@@ -18,8 +22,9 @@ All notable changes to the Khai Python SDK. Format follows
   version from `src/khai/_version.py`) and is stamped into the `User-Agent`.
 
 ### Changed
-- Distribution renamed from `khai-sdk` to `khai` so `pip install khai` matches
-  `import khai`. Not yet published under either name.
+- Distribution name is `khai-sdk` (install with `pip install khai-sdk`, then
+  `import khai`). PyPI rejects `khai` as confusable with the existing `khal`
+  project, so the shorter name is not available.
 - `base_url` must be `https://`; `http://` is accepted only for localhost.
 - `close()` is idempotent.
 
