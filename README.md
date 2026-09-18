@@ -5,7 +5,7 @@ Stream chatbot turns to Khai for evaluation from any cloud — no access granted
 ## Install
 
 ```bash
-pip install khai
+pip install khai-sdk
 ```
 
 ## Quickstart
@@ -107,3 +107,21 @@ All errors derive from `KhaiError`:
 | Queue / buffer cap | `max_queue_size` | — | `10000` |
 
 `base_url` must be `https://`; plain `http://` is accepted only for `localhost`.
+
+## Releasing (maintainers)
+
+Releases are cut from tags and published by CI through PyPI trusted publishing;
+no one uploads from a laptop and no API token is stored anywhere.
+
+1. Bump `__version__` in `src/khai/_version.py` and move the `Unreleased`
+   entries in `CHANGELOG.md` under the new version. Merge via pull request.
+2. Tag the merged commit and push the tag:
+
+   ```bash
+   git tag v0.1.0 && git push origin v0.1.0
+   ```
+
+3. The `Release` workflow builds the sdist and wheel, publishes to TestPyPI,
+   installs from TestPyPI and imports the package, then waits for a reviewer to
+   approve the `pypi` environment before publishing to PyPI and creating the
+   GitHub Release. A tag whose version does not match `__version__` fails fast.

@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "khai"
+name = "khai-sdk"
 dynamic = ["version"]
 description = "Official Python SDK for streaming chatbot turns to Khai for evaluation."
 readme = "README.md"
