@@ -1,0 +1,4518 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Khai LLM Evaluation API",
+    "version": "v1"
+  },
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "Index",
+        "operationId": "index__get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Index  Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/health": {
+      "get": {
+        "summary": "Health",
+        "operationId": "health_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Health Health Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/health": {
+      "get": {
+        "summary": "Api Health",
+        "operationId": "api_health_api_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Api Health Api Health Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ready": {
+      "get": {
+        "summary": "Readiness",
+        "operationId": "readiness_ready_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Readiness Ready Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/sessions/{session_id}": {
+      "get": {
+        "tags": [
+          "sessions"
+        ],
+        "summary": "Get Session Transcript",
+        "operationId": "get_session_transcript_api_v1_sessions__session_id__get",
+        "parameters": [
+          {
+            "name": "session_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Session Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/internal/evaluate-session": {
+      "post": {
+        "tags": [
+          "internal"
+        ],
+        "summary": "Evaluate Session Endpoint",
+        "operationId": "evaluate_session_endpoint_api_internal_evaluate_session_post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/evaluation/runs": {
+      "get": {
+        "tags": [
+          "evaluation-v2"
+        ],
+        "summary": "List Evaluation Runs",
+        "operationId": "list_evaluation_runs_api_v1_evaluation_runs_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "evaluation-v2"
+        ],
+        "summary": "Create Evaluation Run",
+        "operationId": "create_evaluation_run_api_v1_evaluation_runs_post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/evaluation/runs/{run_id}": {
+      "get": {
+        "tags": [
+          "evaluation-v2"
+        ],
+        "summary": "Get Evaluation Run",
+        "operationId": "get_evaluation_run_api_v1_evaluation_runs__run_id__get",
+        "parameters": [
+          {
+            "name": "run_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Run Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "evaluation-v2"
+        ],
+        "summary": "Delete Evaluation Run",
+        "operationId": "delete_evaluation_run_api_v1_evaluation_runs__run_id__delete",
+        "parameters": [
+          {
+            "name": "run_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Run Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/evaluation/runs/{run_id}/turns": {
+      "get": {
+        "tags": [
+          "evaluation-v2"
+        ],
+        "summary": "List Evaluation Turns",
+        "operationId": "list_evaluation_turns_api_v1_evaluation_runs__run_id__turns_get",
+        "parameters": [
+          {
+            "name": "run_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Run Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/evaluation/runs/compare": {
+      "post": {
+        "tags": [
+          "evaluation-v2"
+        ],
+        "summary": "Compare Evaluation Runs",
+        "operationId": "compare_evaluation_runs_api_v1_evaluation_runs_compare_post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/evaluation/runs/{run_id}/reviews": {
+      "patch": {
+        "tags": [
+          "evaluation-v2"
+        ],
+        "summary": "Patch Evaluation Reviews",
+        "operationId": "patch_evaluation_reviews_api_v1_evaluation_runs__run_id__reviews_patch",
+        "parameters": [
+          {
+            "name": "run_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Run Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/evaluation/agents": {
+      "get": {
+        "tags": [
+          "evaluation-v2"
+        ],
+        "summary": "List Evaluation Agents",
+        "operationId": "list_evaluation_agents_api_v1_evaluation_agents_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/rca/analyze": {
+      "post": {
+        "tags": [
+          "rca"
+        ],
+        "summary": "Analyze Mismatch",
+        "operationId": "analyze_mismatch_api_v1_rca_analyze_post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/rca/flag": {
+      "post": {
+        "tags": [
+          "rca"
+        ],
+        "summary": "Flag Conversation",
+        "operationId": "flag_conversation_api_v1_rca_flag_post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/rca/flag/{flag_id}": {
+      "delete": {
+        "tags": [
+          "rca"
+        ],
+        "summary": "Unflag Conversation",
+        "operationId": "unflag_conversation_api_v1_rca_flag__flag_id__delete",
+        "parameters": [
+          {
+            "name": "flag_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Flag Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/rca/insights": {
+      "get": {
+        "tags": [
+          "rca"
+        ],
+        "summary": "List Insights",
+        "operationId": "list_insights_api_v1_rca_insights_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/rca/insights/{insight_id}": {
+      "patch": {
+        "tags": [
+          "rca"
+        ],
+        "summary": "Update Insight",
+        "operationId": "update_insight_api_v1_rca_insights__insight_id__patch",
+        "parameters": [
+          {
+            "name": "insight_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Insight Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "rca"
+        ],
+        "summary": "Get Insight",
+        "operationId": "get_insight_api_v1_rca_insights__insight_id__get",
+        "parameters": [
+          {
+            "name": "insight_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Insight Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/red-teaming/meta": {
+      "get": {
+        "tags": [
+          "red-teaming"
+        ],
+        "summary": "Get Meta",
+        "operationId": "get_meta_api_v1_red_teaming_meta_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/red-teaming/health": {
+      "get": {
+        "tags": [
+          "red-teaming"
+        ],
+        "summary": "Red Teaming Health",
+        "operationId": "red_teaming_health_api_v1_red_teaming_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/red-teaming/runs": {
+      "get": {
+        "tags": [
+          "red-teaming"
+        ],
+        "summary": "List Runs",
+        "operationId": "list_runs_api_v1_red_teaming_runs_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "red-teaming"
+        ],
+        "summary": "Create Run",
+        "operationId": "create_run_api_v1_red_teaming_runs_post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/red-teaming/runs/{run_id}": {
+      "get": {
+        "tags": [
+          "red-teaming"
+        ],
+        "summary": "Get Run",
+        "operationId": "get_run_api_v1_red_teaming_runs__run_id__get",
+        "parameters": [
+          {
+            "name": "run_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Run Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/red-teaming/runs/{run_id}/results": {
+      "get": {
+        "tags": [
+          "red-teaming"
+        ],
+        "summary": "Get Results",
+        "operationId": "get_results_api_v1_red_teaming_runs__run_id__results_get",
+        "parameters": [
+          {
+            "name": "run_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Run Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/red-teaming/runs/{run_id}/export": {
+      "get": {
+        "tags": [
+          "red-teaming"
+        ],
+        "summary": "Export Run",
+        "operationId": "export_run_api_v1_red_teaming_runs__run_id__export_get",
+        "parameters": [
+          {
+            "name": "run_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Run Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/red-teaming/runs/{run_id}/cancel": {
+      "post": {
+        "tags": [
+          "red-teaming"
+        ],
+        "summary": "Cancel Run Endpoint",
+        "operationId": "cancel_run_endpoint_api_v1_red_teaming_runs__run_id__cancel_post",
+        "parameters": [
+          {
+            "name": "run_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Run Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/red-teaming/runs/{run_id}/replay": {
+      "post": {
+        "tags": [
+          "red-teaming"
+        ],
+        "summary": "Replay Run Endpoint",
+        "operationId": "replay_run_endpoint_api_v1_red_teaming_runs__run_id__replay_post",
+        "parameters": [
+          {
+            "name": "run_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Run Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/synthetic/generate": {
+      "post": {
+        "tags": [
+          "synthetic"
+        ],
+        "summary": "Generate Synthetic Data",
+        "operationId": "generate_synthetic_data_api_v1_synthetic_generate_post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/synthetic/options": {
+      "get": {
+        "tags": [
+          "synthetic"
+        ],
+        "summary": "Get Synthetic Options",
+        "operationId": "get_synthetic_options_api_v1_synthetic_options_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/ci/kpis": {
+      "get": {
+        "tags": [
+          "customer-intelligence"
+        ],
+        "summary": "Get Kpis",
+        "operationId": "get_kpis_api_v1_ci_kpis_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/ci/trend": {
+      "get": {
+        "tags": [
+          "customer-intelligence"
+        ],
+        "summary": "Get Trend",
+        "operationId": "get_trend_api_v1_ci_trend_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/ci/triage-stats": {
+      "get": {
+        "tags": [
+          "customer-intelligence"
+        ],
+        "summary": "Get Triage Stats",
+        "operationId": "get_triage_stats_api_v1_ci_triage_stats_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/ci/wordcloud": {
+      "get": {
+        "tags": [
+          "customer-intelligence"
+        ],
+        "summary": "Get Wordcloud",
+        "operationId": "get_wordcloud_api_v1_ci_wordcloud_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/ci/queries": {
+      "get": {
+        "tags": [
+          "customer-intelligence"
+        ],
+        "summary": "Get Queries",
+        "operationId": "get_queries_api_v1_ci_queries_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/ci/clusters": {
+      "get": {
+        "tags": [
+          "customer-intelligence"
+        ],
+        "summary": "Get Clusters",
+        "operationId": "get_clusters_api_v1_ci_clusters_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/ci/sub-themes": {
+      "get": {
+        "tags": [
+          "customer-intelligence"
+        ],
+        "summary": "Get Sub Themes",
+        "operationId": "get_sub_themes_api_v1_ci_sub_themes_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/ci/briefing": {
+      "get": {
+        "tags": [
+          "customer-intelligence"
+        ],
+        "summary": "Get Briefing",
+        "operationId": "get_briefing_api_v1_ci_briefing_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/ci/ask": {
+      "post": {
+        "tags": [
+          "customer-intelligence"
+        ],
+        "summary": "Post Ask",
+        "operationId": "post_ask_api_v1_ci_ask_post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/ci/ask/history": {
+      "get": {
+        "tags": [
+          "customer-intelligence"
+        ],
+        "summary": "Get Ask History",
+        "operationId": "get_ask_history_api_v1_ci_ask_history_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "customer-intelligence"
+        ],
+        "summary": "Clear Ask History",
+        "operationId": "clear_ask_history_api_v1_ci_ask_history_delete",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/ci/ask/history/{item_id}": {
+      "delete": {
+        "tags": [
+          "customer-intelligence"
+        ],
+        "summary": "Delete Ask History Item",
+        "operationId": "delete_ask_history_item_api_v1_ci_ask_history__item_id__delete",
+        "parameters": [
+          {
+            "name": "item_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Item Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/ci/facets": {
+      "get": {
+        "tags": [
+          "customer-intelligence"
+        ],
+        "summary": "Get Facets",
+        "operationId": "get_facets_api_v1_ci_facets_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/ci/meta": {
+      "get": {
+        "tags": [
+          "customer-intelligence"
+        ],
+        "summary": "Get Meta",
+        "operationId": "get_meta_api_v1_ci_meta_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/ci/intent-discovery": {
+      "get": {
+        "tags": [
+          "customer-intelligence"
+        ],
+        "summary": "Get Intent Discovery",
+        "operationId": "get_intent_discovery_api_v1_ci_intent_discovery_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/ci/emerging-intents": {
+      "get": {
+        "tags": [
+          "customer-intelligence"
+        ],
+        "summary": "List Emerging Intents Route",
+        "operationId": "list_emerging_intents_route_api_v1_ci_emerging_intents_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/ci/emerging-intents/{intent_id}/{action}": {
+      "post": {
+        "tags": [
+          "customer-intelligence"
+        ],
+        "summary": "Emerging Intent Action",
+        "operationId": "emerging_intent_action_api_v1_ci_emerging_intents__intent_id___action__post",
+        "parameters": [
+          {
+            "name": "intent_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Intent Id"
+            }
+          },
+          {
+            "name": "action",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Action"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/clients/gcp-config": {
+      "get": {
+        "tags": [
+          "clients"
+        ],
+        "summary": "Get Gcp Config",
+        "operationId": "get_gcp_config_api_v1_clients_gcp_config_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "clients"
+        ],
+        "summary": "Save Gcp Config",
+        "operationId": "save_gcp_config_api_v1_clients_gcp_config_post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "clients"
+        ],
+        "summary": "Delete Gcp Config",
+        "operationId": "delete_gcp_config_api_v1_clients_gcp_config_delete",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/clients/gcp-config/validate": {
+      "post": {
+        "tags": [
+          "clients"
+        ],
+        "summary": "Validate Gcp Config",
+        "operationId": "validate_gcp_config_api_v1_clients_gcp_config_validate_post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/clients/directline-config": {
+      "get": {
+        "tags": [
+          "clients"
+        ],
+        "summary": "Get Directline Config",
+        "operationId": "get_directline_config_api_v1_clients_directline_config_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "clients"
+        ],
+        "summary": "Save Directline Config",
+        "operationId": "save_directline_config_api_v1_clients_directline_config_post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "clients"
+        ],
+        "summary": "Delete Directline Config",
+        "operationId": "delete_directline_config_api_v1_clients_directline_config_delete",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/clients/directline-config/validate": {
+      "post": {
+        "tags": [
+          "clients"
+        ],
+        "summary": "Validate Directline Config",
+        "operationId": "validate_directline_config_api_v1_clients_directline_config_validate_post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/clients/directline-token": {
+      "post": {
+        "tags": [
+          "clients"
+        ],
+        "summary": "Generate Directline Token",
+        "operationId": "generate_directline_token_api_v1_clients_directline_token_post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/clients/api-keys": {
+      "get": {
+        "tags": [
+          "clients"
+        ],
+        "summary": "List Client Api Keys",
+        "operationId": "list_client_api_keys_api_v1_clients_api_keys_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "clients"
+        ],
+        "summary": "Create Client Api Key",
+        "operationId": "create_client_api_key_api_v1_clients_api_keys_post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/clients/api-keys/{key_id}/rotate": {
+      "post": {
+        "tags": [
+          "clients"
+        ],
+        "summary": "Rotate Client Api Key",
+        "operationId": "rotate_client_api_key_api_v1_clients_api_keys__key_id__rotate_post",
+        "parameters": [
+          {
+            "name": "key_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Key Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/clients/api-keys/{key_id}": {
+      "delete": {
+        "tags": [
+          "clients"
+        ],
+        "summary": "Revoke Client Api Key",
+        "operationId": "revoke_client_api_key_api_v1_clients_api_keys__key_id__delete",
+        "parameters": [
+          {
+            "name": "key_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Key Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/clients/api-keys/test-connection": {
+      "post": {
+        "tags": [
+          "clients"
+        ],
+        "summary": "Test Api Key Connection",
+        "description": "Readiness check for self-serve ingest onboarding.\n\nConfirms the account has an active key, that the target agent (if provided)\nis owned by the caller, and reports whether monitoring is active \u2014 turns\nonly surface on Live Monitoring when it is.",
+        "operationId": "test_api_key_connection_api_v1_clients_api_keys_test_connection_post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/agents/discover": {
+      "get": {
+        "tags": [
+          "agents"
+        ],
+        "summary": "Discover Gcp Resources",
+        "description": "Auto-discover GCP resources for the Connect Agent dialog.\n\nQuery params:\n    - mode: \"single\" (default) or \"all_projects\"\n    - user_id: (required, from JWT) User ID to look up their GCP config",
+        "operationId": "discover_gcp_resources_api_agents_discover_get",
+        "parameters": [
+          {
+            "name": "mode",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Discovery mode: 'single' or 'all_projects'",
+              "default": "single",
+              "title": "Mode"
+            },
+            "description": "Discovery mode: 'single' or 'all_projects'"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/agents/connect": {
+      "post": {
+        "tags": [
+          "agents"
+        ],
+        "summary": "Quick Connect Agent",
+        "description": "Backward-compatible Connect Agent endpoint used by FE:\nPOST /api/agents/connect",
+        "operationId": "quick_connect_agent_api_agents_connect_post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/agents/status": {
+      "get": {
+        "tags": [
+          "agents"
+        ],
+        "summary": "Get Agents Status",
+        "description": "Return the authenticated user's active binding + connected agents.",
+        "operationId": "get_agents_status_api_agents_status_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/agents/{agent_id}": {
+      "get": {
+        "tags": [
+          "agents"
+        ],
+        "summary": "Get Agent",
+        "description": "Get a specific agent by id/name/dialogflow id.",
+        "operationId": "get_agent_api_agents__agent_id__get",
+        "parameters": [
+          {
+            "name": "agent_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Agent Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "agents"
+        ],
+        "summary": "Update Agent",
+        "description": "Update an existing agent.",
+        "operationId": "update_agent_api_agents__agent_id__patch",
+        "parameters": [
+          {
+            "name": "agent_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Agent Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "agents"
+        ],
+        "summary": "Update Agent",
+        "description": "Update an existing agent.",
+        "operationId": "update_agent_api_agents__agent_id__put",
+        "parameters": [
+          {
+            "name": "agent_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Agent Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "agents"
+        ],
+        "summary": "Delete Connected Agent",
+        "description": "Delete a connected binding for the authenticated user.",
+        "operationId": "delete_connected_agent_api_agents__agent_id__delete",
+        "parameters": [
+          {
+            "name": "agent_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Agent Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/agents/{agent_id}/activate": {
+      "post": {
+        "tags": [
+          "agents"
+        ],
+        "summary": "Activate Agent",
+        "description": "Set an already-connected agent as active for the authenticated user.",
+        "operationId": "activate_agent_api_agents__agent_id__activate_post",
+        "parameters": [
+          {
+            "name": "agent_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Agent Id"
+            }
+          },
+          {
+            "name": "feature",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Feature"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/agents": {
+      "delete": {
+        "tags": [
+          "agents"
+        ],
+        "summary": "Delete All Connected Agents",
+        "description": "Delete all connected bindings for the authenticated user.",
+        "operationId": "delete_all_connected_agents_api_agents_delete",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/agents/{agent_id}/monitoring": {
+      "patch": {
+        "tags": [
+          "agents"
+        ],
+        "summary": "Toggle Agent Monitoring",
+        "description": "Activate/deactivate live monitoring ingestion for an agent.",
+        "operationId": "toggle_agent_monitoring_api_agents__agent_id__monitoring_patch",
+        "parameters": [
+          {
+            "name": "agent_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Agent Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "agents"
+        ],
+        "summary": "Get Agent Monitoring Status",
+        "description": "Get monitoring activation status for an agent.",
+        "operationId": "get_agent_monitoring_status_api_agents__agent_id__monitoring_get",
+        "parameters": [
+          {
+            "name": "agent_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Agent Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/ingest": {
+      "post": {
+        "tags": [
+          "ingest"
+        ],
+        "summary": "Ingest Conversation",
+        "description": "Receive and evaluate a single conversation turn.\n\nAuth: ``Authorization: Bearer <api_key>``.\n\nThe body contract is ``IngestTurnRequest``; the response is an\n``IngestResponse`` whose ``status`` is ``evaluated`` (with ``result``),\n``skipped`` (with ``reason``), or ``duplicate`` (with ``message_id``).",
+        "operationId": "ingest_conversation_api_v1_ingest_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IngestTurnRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IngestResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ClientApiKey": []
+          }
+        ]
+      }
+    },
+    "/api/v1/ingest/batch": {
+      "post": {
+        "tags": [
+          "ingest"
+        ],
+        "summary": "Ingest Batch",
+        "description": "Receive and evaluate up to 100 conversation turns at once.\n\nAuth: ``Authorization: Bearer <api_key>``. Body contract:\n``IngestBatchRequest``; response: ``IngestBatchResponse``.",
+        "operationId": "ingest_batch_api_v1_ingest_batch_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IngestBatchRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IngestBatchResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ClientApiKey": []
+          }
+        ]
+      }
+    },
+    "/api/live-monitoring": {
+      "get": {
+        "tags": [
+          "live-monitoring"
+        ],
+        "summary": "Get Live Monitoring",
+        "description": "Main endpoint for live monitoring dashboard.\n\nQuery params:\n- project_id: str (optional) - GCP project ID to monitor. If not provided, uses default project.\n- agent_id: str (optional) - Dialogflow agent ID to filter conversations. If not provided, monitors all agents.\n- days_back: int (default: 30) - How many days to look back\n- limit: int (default: 1000) - Max conversations to load\n- use_llm: bool (default: true) - Use LLM for guardrails (batched, accurate)\n- refresh: bool (default: false) - Force refresh (bypass cache)\n\nReturns: Complete monitoring data (KPIs, time series, conversations, intent_summary)\n\nNOTE: Results are cached for 5 minutes by default to reduce BigQuery + LLM costs.\nSet refresh=true to force a new query.",
+        "operationId": "get_live_monitoring_api_live_monitoring_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/live-monitoring/kpis": {
+      "get": {
+        "tags": [
+          "live-monitoring"
+        ],
+        "summary": "Get Kpis Only",
+        "description": "Lightweight endpoint that returns only KPIs (no conversation details).\nUses cache if available.\n\nQuery params:\n- project_id: str (optional) - GCP project ID to monitor\n- agent_id: str (optional) - Dialogflow agent ID to filter conversations",
+        "operationId": "get_kpis_only_api_live_monitoring_kpis_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/live-monitoring/conversations": {
+      "get": {
+        "tags": [
+          "live-monitoring"
+        ],
+        "summary": "Get Conversations",
+        "description": "Get detailed conversation results with pagination.\nUses cache if available.\n\nQuery params:\n- project_id: str (optional) - GCP project ID to monitor\n- agent_id: str (optional) - Dialogflow agent ID to filter conversations\n- days_back: int (default: 7)\n- limit: int (default: 1000)\n- page: int (default: 1)\n- page_size: int (default: 50)\n- filter: str (optional) - \"failed_only\" | \"issues_only\" | \"critical_only\" | \"warnings_only\"\n- intent: str (optional) - Filter by intent_id\n- category: str (optional) - Filter by response_category\n- use_llm: bool (default: true) - Use LLM for guardrails",
+        "operationId": "get_conversations_api_live_monitoring_conversations_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/live-monitoring/scope": {
+      "post": {
+        "tags": [
+          "live-monitoring"
+        ],
+        "summary": "Set Scope",
+        "description": "Set agent scope for out_of_scope detection.\n\nBody:\n{\n    \"in_scope\": \"What the agent should handle\",\n    \"out_of_scope\": \"What the agent should NOT handle\"\n}",
+        "operationId": "set_scope_api_live_monitoring_scope_post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/live-monitoring/intents": {
+      "get": {
+        "tags": [
+          "live-monitoring"
+        ],
+        "summary": "Get Intents",
+        "description": "Get configured intents for live monitoring.",
+        "operationId": "get_intents_api_live_monitoring_intents_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/live-monitoring/intents/reload": {
+      "post": {
+        "tags": [
+          "live-monitoring"
+        ],
+        "summary": "Reload Intents",
+        "description": "Reload intents from disk.",
+        "operationId": "reload_intents_api_live_monitoring_intents_reload_post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/live-monitoring/cache": {
+      "get": {
+        "tags": [
+          "live-monitoring"
+        ],
+        "summary": "Get Cache Status",
+        "description": "Get cache status.\nReturns info about current cache state (Redis or in-memory fallback).",
+        "operationId": "get_cache_status_api_live_monitoring_cache_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/live-monitoring/cache/clear": {
+      "post": {
+        "tags": [
+          "live-monitoring"
+        ],
+        "summary": "Clear Cache",
+        "description": "Clear the cache for a specific project or all projects.\nNext request will trigger a fresh BigQuery + LLM query.\n\nQuery params:\n- project_id: str (optional) - Clear cache for specific project only",
+        "operationId": "clear_cache_api_live_monitoring_cache_clear_post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/live-monitoring/cache/clear-all": {
+      "post": {
+        "tags": [
+          "live-monitoring"
+        ],
+        "summary": "Clear All Caches",
+        "description": "Clear ALL in-memory caches.\nUse this when you delete data from BigQuery and want dashboard to reflect it.",
+        "operationId": "clear_all_caches_api_live_monitoring_cache_clear_all_post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/live-monitoring/health/firestore": {
+      "get": {
+        "tags": [
+          "live-monitoring"
+        ],
+        "summary": "Firestore Health",
+        "description": "Check Firestore connectivity and metadata for the real-time store.",
+        "operationId": "firestore_health_api_live_monitoring_health_firestore_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/live-monitoring/events/recent": {
+      "get": {
+        "tags": [
+          "live-monitoring"
+        ],
+        "summary": "Recent Events",
+        "description": "Deprecated: Use GET /api/live-monitoring instead.\nRedis is now only used for real-time notifications, not data storage.",
+        "operationId": "recent_events_api_live_monitoring_events_recent_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/live-monitoring/events": {
+      "get": {
+        "tags": [
+          "live-monitoring"
+        ],
+        "summary": "Stream Events",
+        "description": "Stream live events for a specific agent.",
+        "operationId": "stream_events_api_live_monitoring_events_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/live-monitoring/debug/firestore": {
+      "get": {
+        "tags": [
+          "live-monitoring"
+        ],
+        "summary": "Debug Firestore",
+        "description": "Debug endpoint to inspect Firestore data directly.\nQuery params:\n- agent_id: str (optional) - Filter by agent\n- limit: int (default: 10) - Number of records to show",
+        "operationId": "debug_firestore_api_live_monitoring_debug_firestore_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/live-monitoring/meta/languages": {
+      "get": {
+        "tags": [
+          "live-monitoring"
+        ],
+        "summary": "Get Supported Languages",
+        "operationId": "get_supported_languages_api_live_monitoring_meta_languages_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/live-monitoring/trend": {
+      "get": {
+        "tags": [
+          "live-monitoring"
+        ],
+        "summary": "Get Live Trend",
+        "operationId": "get_live_trend_api_live_monitoring_trend_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/live-monitoring/drilldown": {
+      "get": {
+        "tags": [
+          "live-monitoring"
+        ],
+        "summary": "Get Live Drilldown",
+        "operationId": "get_live_drilldown_api_live_monitoring_drilldown_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/live-monitoring/evaluators/analytics": {
+      "get": {
+        "tags": [
+          "live-monitoring"
+        ],
+        "summary": "Get Custom Evaluator Analytics",
+        "operationId": "get_custom_evaluator_analytics_api_live_monitoring_evaluators_analytics_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/evaluation/intents": {
+      "get": {
+        "tags": [
+          "manual-evaluation"
+        ],
+        "summary": "List Intents",
+        "description": "List all intents for current user and agent.",
+        "operationId": "list_intents_api_evaluation_intents_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "manual-evaluation"
+        ],
+        "summary": "Create Intent",
+        "description": "Create a new intent for the given agent (shared across all users of the agent).",
+        "operationId": "create_intent_api_evaluation_intents_post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/evaluation/intents/bulk": {
+      "post": {
+        "tags": [
+          "manual-evaluation"
+        ],
+        "summary": "Bulk Import Intents",
+        "description": "Bulk import intents from file or JSON.\n\nAccepts:\n- File upload (CSV/JSON)\n- JSON body with intents array\n\nCSV format:\nintent_id,name,description,keywords\ngreet,Greeting,User says hello,\"hi,hello,hey\"\n\nJSON format:\n{\n    \"intents\": [\n        {\"intent_id\": \"greet\", \"name\": \"Greeting\", \"description\": \"User says hello\", \"keywords\": [\"hi\", \"hello\"]}\n    ]\n}",
+        "operationId": "bulk_import_intents_api_evaluation_intents_bulk_post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/evaluation/intents/{intent_id}": {
+      "get": {
+        "tags": [
+          "manual-evaluation"
+        ],
+        "summary": "Get Intent",
+        "description": "Get a specific intent.",
+        "operationId": "get_intent_api_evaluation_intents__intent_id__get",
+        "parameters": [
+          {
+            "name": "intent_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Intent Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "manual-evaluation"
+        ],
+        "summary": "Update Intent",
+        "description": "Update an intent.",
+        "operationId": "update_intent_api_evaluation_intents__intent_id__put",
+        "parameters": [
+          {
+            "name": "intent_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Intent Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "manual-evaluation"
+        ],
+        "summary": "Delete Intent",
+        "description": "Delete an intent (business rules will be unlinked, not deleted).",
+        "operationId": "delete_intent_api_evaluation_intents__intent_id__delete",
+        "parameters": [
+          {
+            "name": "intent_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Intent Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/evaluation/business-rules": {
+      "get": {
+        "tags": [
+          "manual-evaluation"
+        ],
+        "summary": "List Business Rules",
+        "description": "List all business rules, optionally filtered by intent.",
+        "operationId": "list_business_rules_api_evaluation_business_rules_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "manual-evaluation"
+        ],
+        "summary": "Create Business Rule",
+        "description": "Create a new business rule.",
+        "operationId": "create_business_rule_api_evaluation_business_rules_post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/evaluation/business-rules/{rule_id}": {
+      "get": {
+        "tags": [
+          "manual-evaluation"
+        ],
+        "summary": "Get Business Rule",
+        "description": "Get a specific business rule.",
+        "operationId": "get_business_rule_api_evaluation_business_rules__rule_id__get",
+        "parameters": [
+          {
+            "name": "rule_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Rule Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "manual-evaluation"
+        ],
+        "summary": "Update Business Rule",
+        "description": "Update a business rule.",
+        "operationId": "update_business_rule_api_evaluation_business_rules__rule_id__put",
+        "parameters": [
+          {
+            "name": "rule_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Rule Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "manual-evaluation"
+        ],
+        "summary": "Delete Business Rule",
+        "description": "Delete a business rule.",
+        "operationId": "delete_business_rule_api_evaluation_business_rules__rule_id__delete",
+        "parameters": [
+          {
+            "name": "rule_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Rule Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/evaluation/upload/queries": {
+      "post": {
+        "tags": [
+          "manual-evaluation"
+        ],
+        "summary": "Upload Queries",
+        "description": "Upload queries for evaluation.\n\nAccepts:\n- File upload (CSV/JSON)\n- JSON body with queries array\n\nFile storage depends on user_id only (not agent).\nagent_id is optional \u2014 used only for loading queries into an\nin-memory orchestrator session, not for file persistence.",
+        "operationId": "upload_queries_api_evaluation_upload_queries_post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/evaluation/upload/queries/clear": {
+      "post": {
+        "tags": [
+          "manual-evaluation"
+        ],
+        "summary": "Clear Queries",
+        "description": "Clear uploaded queries.",
+        "operationId": "clear_queries_api_evaluation_upload_queries_clear_post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/evaluation/upload/queries/status": {
+      "get": {
+        "tags": [
+          "manual-evaluation"
+        ],
+        "summary": "Queries Status",
+        "description": "Get current uploaded queries status.",
+        "operationId": "queries_status_api_evaluation_upload_queries_status_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/evaluation/upload/knowledge-base/preflight": {
+      "post": {
+        "tags": [
+          "manual-evaluation"
+        ],
+        "summary": "Upload Knowledge Base Preflight",
+        "description": "Preflight parse of a knowledge base file without registering or mutating\nserver-side state. Returns ingest diagnostics and an entry preview so the\nfrontend can surface issues before committing the upload.\n\nAccepts same inputs as /upload/knowledge-base (file upload or JSON body with documents array).",
+        "operationId": "upload_knowledge_base_preflight_api_evaluation_upload_knowledge_base_preflight_post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/evaluation/upload/knowledge-base": {
+      "post": {
+        "tags": [
+          "manual-evaluation"
+        ],
+        "summary": "Upload Knowledge Base",
+        "description": "Upload knowledge base for hallucination detection.\n\nAccepts:\n- File upload (CSV/JSON/TXT)\n- JSON body with documents array\n\nFile storage depends on user_id only (not agent).\nagent_id is optional \u2014 used only for loading into the orchestrator session.",
+        "operationId": "upload_knowledge_base_api_evaluation_upload_knowledge_base_post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/evaluation/knowledge-base/ask": {
+      "post": {
+        "tags": [
+          "manual-evaluation"
+        ],
+        "summary": "Ask Knowledge Base",
+        "description": "Grounded Q&A over the loaded ground-truth knowledge base.\n\nBody:\n    {\"query\": str, \"top_k\"?: int, \"intent_id\"?: str,\n     \"threshold\"?: float, \"min_confidence\"?: float}\nReturns:\n    {\"success\": true, \"result\": {answer, citations, confidence, evidence,\n                                 used_ids, grounded, retrieval, diagnostics}}",
+        "operationId": "ask_knowledge_base_api_evaluation_knowledge_base_ask_post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/evaluation/knowledge-base": {
+      "delete": {
+        "tags": [
+          "manual-evaluation"
+        ],
+        "summary": "Clear Knowledge Base",
+        "description": "Clear the knowledge base.",
+        "operationId": "clear_knowledge_base_api_evaluation_knowledge_base_delete",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/evaluation/files": {
+      "get": {
+        "tags": [
+          "manual-evaluation"
+        ],
+        "summary": "List Eval Files",
+        "description": "List uploaded files (queries or ground_truth) for the current user.",
+        "operationId": "list_eval_files_api_evaluation_files_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/evaluation/files/{file_id}/select": {
+      "post": {
+        "tags": [
+          "manual-evaluation"
+        ],
+        "summary": "Select Eval File",
+        "description": "Mark a file as selected (updates last_used_at) and return its metadata.",
+        "operationId": "select_eval_file_api_evaluation_files__file_id__select_post",
+        "parameters": [
+          {
+            "name": "file_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "File Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/evaluation/files/{file_id}": {
+      "delete": {
+        "tags": [
+          "manual-evaluation"
+        ],
+        "summary": "Delete Eval File",
+        "description": "Soft-delete an uploaded file.",
+        "operationId": "delete_eval_file_api_evaluation_files__file_id__delete",
+        "parameters": [
+          {
+            "name": "file_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "File Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/evaluation/files/{file_id}/content": {
+      "get": {
+        "tags": [
+          "manual-evaluation"
+        ],
+        "summary": "Download Eval File Content",
+        "description": "Download the raw content of an uploaded eval file from GCS.",
+        "operationId": "download_eval_file_content_api_evaluation_files__file_id__content_get",
+        "parameters": [
+          {
+            "name": "file_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "File Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/evaluation/files/{file_id}/index-status": {
+      "get": {
+        "tags": [
+          "manual-evaluation"
+        ],
+        "summary": "File Index Status",
+        "description": "Return embedding/indexing status for a given uploaded file.",
+        "operationId": "file_index_status_api_evaluation_files__file_id__index_status_get",
+        "parameters": [
+          {
+            "name": "file_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "File Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/evaluation/run": {
+      "post": {
+        "tags": [
+          "manual-evaluation"
+        ],
+        "summary": "Run Evaluation",
+        "description": "Run evaluation asynchronously via Cloud Run Job.\n\nThis endpoint has been converted to async-by-default to eliminate Cloud Run\nrequest timeouts. All runs are now enqueued as Cloud Run Jobs and return\nimmediately with a job_id for polling.\n\nReturns: 202 + {job_id, status, total_rows, execution}\nPoll status via: GET /api/evaluation/run/status/{job_id}\nRetrieve results via: GET /api/evaluation/run/result/{job_id}",
+        "operationId": "run_evaluation_api_evaluation_run_post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/evaluation/evaluate-single": {
+      "post": {
+        "tags": [
+          "manual-evaluation"
+        ],
+        "summary": "Evaluate Single",
+        "description": "Evaluate a single query/response pair.\n\nBody:\n{\n    \"user_query\": \"...\",\n    \"agent_response\": \"...\" (optional, will fetch if not provided),\n    \"intent_id\": \"...\" (optional),\n    \"agent_id\": \"...\" (optional)\n}",
+        "operationId": "evaluate_single_api_evaluation_evaluate_single_post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/evaluation/run/async": {
+      "post": {
+        "tags": [
+          "manual-evaluation"
+        ],
+        "summary": "Run Evaluation Async",
+        "description": "Enqueue a manual-evaluation run as a Cloud Run Job.\n\nBody (JSON):\n    agent_name, agent_id (required)\n    queries_file_id (required \u2014 must already be in the eval-file library)\n    ground_truth_file_id (optional)\n    mode, num_runs, robustness, fetch_responses, intents (optional)\n    run_name / dataset_name (optional, cosmetic)",
+        "operationId": "run_evaluation_async_api_evaluation_run_async_post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/evaluation/run/status/{job_id}": {
+      "get": {
+        "tags": [
+          "manual-evaluation"
+        ],
+        "summary": "Run Evaluation Status",
+        "description": "Return the current status + progress for a job. Owned by the caller only.",
+        "operationId": "run_evaluation_status_api_evaluation_run_status__job_id__get",
+        "parameters": [
+          {
+            "name": "job_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Job Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/evaluation/run/result/{job_id}": {
+      "get": {
+        "tags": [
+          "manual-evaluation"
+        ],
+        "summary": "Run Evaluation Result",
+        "description": "Return the final result envelope for a succeeded/cancelled job.",
+        "operationId": "run_evaluation_result_api_evaluation_run_result__job_id__get",
+        "parameters": [
+          {
+            "name": "job_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Job Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/evaluation/run/{job_id}/cancel": {
+      "post": {
+        "tags": [
+          "manual-evaluation"
+        ],
+        "summary": "Run Evaluation Cancel",
+        "description": "Request cancellation. The running job container polls this flag and\nstops between rows; terminal jobs are a no-op.",
+        "operationId": "run_evaluation_cancel_api_evaluation_run__job_id__cancel_post",
+        "parameters": [
+          {
+            "name": "job_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Job Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/evaluation/history": {
+      "get": {
+        "tags": [
+          "manual-evaluation"
+        ],
+        "summary": "Get Evaluation History",
+        "description": "Get list of all past evaluations for the current user and agent.\n\nQuery params:\n- limit: int (default: 20) - Max evaluations to return\n- agent_name: str (optional) - Agent name to filter\n\nReturns list of evaluations with summary info.",
+        "operationId": "get_evaluation_history_api_evaluation_history_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/evaluation/history/agents": {
+      "get": {
+        "tags": [
+          "manual-evaluation"
+        ],
+        "summary": "List User Agents",
+        "description": "List all agents that have evaluation history for the current user.\nReturns agent names that can be used in the /history endpoint.",
+        "operationId": "list_user_agents_api_evaluation_history_agents_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/evaluation/guardrails/metadata": {
+      "get": {
+        "tags": [
+          "manual-evaluation"
+        ],
+        "summary": "Get Guardrails Metadata",
+        "description": "Return guardrail metadata for the frontend to dynamically build UI.\nNo auth required \u2014 this is static config data.\nReturns: builtin IDs, display names, pass/fail descriptions.",
+        "operationId": "get_guardrails_metadata_api_evaluation_guardrails_metadata_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/evaluation/guardrails": {
+      "get": {
+        "tags": [
+          "manual-evaluation"
+        ],
+        "summary": "Get Guardrails",
+        "description": "Get all guardrails configuration for the current agent.\nReturns both builtin and custom guardrails with their settings.\n\nQuery params:\n- mode: \"live\" | \"manual\" (optional) \u2014 filter to only guardrails enabled for that mode.",
+        "operationId": "get_guardrails_api_evaluation_guardrails_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "manual-evaluation"
+        ],
+        "summary": "Add Custom Guardrail",
+        "description": "Add a new custom guardrail with LLM-based detection.\n\nBody:\n{\n    \"name\": \"Brand Guidelines\",\n    \"description\": \"Check if response follows brand voice\",\n    \"type\": \"input\" | \"output\",\n    \"severity\": \"low\" | \"medium\" | \"high\" | \"critical\",\n    \"detection_prompt\": \"Does this violate brand guidelines? Answer yes or no.\"\n}",
+        "operationId": "add_custom_guardrail_api_evaluation_guardrails_post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/evaluation/guardrails/agent/{agent_name}": {
+      "get": {
+        "tags": [
+          "manual-evaluation"
+        ],
+        "summary": "Get Guardrails For Agent",
+        "description": "Load and get guardrails configuration for a specific agent.\nThis also switches the current agent context.\n\nQuery params:\n- mode: \"live\" | \"manual\" (optional) \u2014 filter to only guardrails enabled for that mode.",
+        "operationId": "get_guardrails_for_agent_api_evaluation_guardrails_agent__agent_name__get",
+        "parameters": [
+          {
+            "name": "agent_name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Agent Name"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/evaluation/guardrails/{guardrail_id}": {
+      "put": {
+        "tags": [
+          "manual-evaluation"
+        ],
+        "summary": "Update Guardrail",
+        "description": "Update a guardrail's settings.\n\nBody (any subset):\n{\n    \"enabled\": true/false,\n    \"live_enabled\": true/false,\n    \"manual_enabled\": true/false,\n    \"severity\": \"low\" | \"medium\" | \"high\" | \"critical\",\n    \"tags\": [\"EMEA\", \"PCI\"],\n    \"category\": \"safety\" | \"quality\" | \"compliance\" | \"industry\" | \"custom\",\n    \"name\": \"...\" (only for custom guardrails),\n    \"type\": \"input\" | \"output\" (only for custom guardrails),\n    \"description\": \"...\" (only for custom guardrails)\n}",
+        "operationId": "update_guardrail_api_evaluation_guardrails__guardrail_id__put",
+        "parameters": [
+          {
+            "name": "guardrail_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Guardrail Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "manual-evaluation"
+        ],
+        "summary": "Delete Guardrail",
+        "description": "Delete a custom guardrail.\nCannot delete builtin guardrails.",
+        "operationId": "delete_guardrail_api_evaluation_guardrails__guardrail_id__delete",
+        "parameters": [
+          {
+            "name": "guardrail_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Guardrail Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/evaluation/history/{evaluation_id}": {
+      "get": {
+        "tags": [
+          "manual-evaluation"
+        ],
+        "summary": "Get Evaluation Detail",
+        "description": "Get details of a specific evaluation for the current user.",
+        "operationId": "get_evaluation_detail_api_evaluation_history__evaluation_id__get",
+        "parameters": [
+          {
+            "name": "evaluation_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Evaluation Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/evaluation/compare": {
+      "post": {
+        "tags": [
+          "manual-evaluation"
+        ],
+        "summary": "Compare Evaluations",
+        "description": "Compare two evaluations with LLM-based response analysis.\n\nBody:\n{\n    \"eval_id_1\": \"older evaluation ID\",\n    \"eval_id_2\": \"newer evaluation ID\",\n    \"agent_id\": \"optional agent ID\"\n}\n\nReturns comparison with:\n- Summary: fixed, regressed, unchanged, new, response_changed counts\n- Per-row analysis including response similarity",
+        "operationId": "compare_evaluations_api_evaluation_compare_post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/evaluation/config/chatbot": {
+      "get": {
+        "tags": [
+          "manual-evaluation"
+        ],
+        "summary": "Get Chatbot Config",
+        "description": "Get current chatbot configuration.",
+        "operationId": "get_chatbot_config_api_evaluation_config_chatbot_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "manual-evaluation"
+        ],
+        "summary": "Configure Chatbot",
+        "description": "Configure chatbot for fetching responses.\n\nSupports three platforms:\n\n1. REST API (default):\n{\n    \"agent_name\": \"My Bot\",\n    \"platform\": \"rest_api\",\n    \"endpoint\": \"https://my-api.com/chat\",\n    \"api_key\": \"optional-key\"\n}\n\n2. Dialogflow CX:\n{\n    \"agent_name\": \"My CX Bot\",\n    \"platform\": \"dialogflow_cx\",\n    \"project_id\": \"my-gcp-project\",\n    \"location\": \"us-central1\",\n    \"agent_id\": \"abc-123-xyz\",\n    \"language_code\": \"en\"\n}\n\n3. Copilot Studio (Direct Line):\n{\n    \"agent_name\": \"My Copilot Bot\",\n    \"platform\": \"copilot_studio\"\n}\n\u2014 bot secret is loaded from Firestore (saved via Settings \u2192 Copilot Studio)",
+        "operationId": "configure_chatbot_api_evaluation_config_chatbot_post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/evaluation/config/chatbot/test": {
+      "post": {
+        "tags": [
+          "manual-evaluation"
+        ],
+        "summary": "Test Chatbot Connection",
+        "description": "Test the chatbot connection with a sample query.\n\nBody:\n{\n    \"query\": \"Hello, how are you?\",\n    \"agent_id\": \"...\" (optional)\n}",
+        "operationId": "test_chatbot_connection_api_evaluation_config_chatbot_test_post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/evaluation/history/{evaluation_id}/reviews": {
+      "patch": {
+        "tags": [
+          "manual-evaluation"
+        ],
+        "summary": "Patch Human Reviews",
+        "description": "Persist human-review selections and comments for an evaluation.\n\nThe data is stored inside the evaluation history JSON in GCS so it\nsurvives reloads and is available across devices.\n\nBody:\n{\n    \"agent_name\": \"MyAgent\",\n    \"reviews\": {\n        \"<rowKey>\": {\n            \"human_review\": \"acceptable\" | \"not-acceptable\",\n            \"comment\": \"free-text\"\n        },\n        ...\n    }\n}",
+        "operationId": "patch_human_reviews_api_evaluation_history__evaluation_id__reviews_patch",
+        "parameters": [
+          {
+            "name": "evaluation_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Evaluation Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/evaluation/human-review/{evaluation_id}/{query_id}": {
+      "put": {
+        "tags": [
+          "manual-evaluation"
+        ],
+        "summary": "Update Human Review",
+        "description": "Update human review for a specific query result.\n\nBody:\n{\n    \"review\": \"Correct\" | \"Incorrect\" | \"Needs Investigation\" | \"Override: Acceptable\"\n}",
+        "operationId": "update_human_review_api_evaluation_human_review__evaluation_id___query_id__put",
+        "parameters": [
+          {
+            "name": "evaluation_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Evaluation Id"
+            }
+          },
+          {
+            "name": "query_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Query Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/evaluation/export/{evaluation_id}": {
+      "get": {
+        "tags": [
+          "manual-evaluation"
+        ],
+        "summary": "Export Evaluation",
+        "description": "Export evaluation results as CSV.",
+        "operationId": "export_evaluation_api_evaluation_export__evaluation_id__get",
+        "parameters": [
+          {
+            "name": "evaluation_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Evaluation Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/evaluation/agents": {
+      "get": {
+        "tags": [
+          "manual-evaluation"
+        ],
+        "summary": "List Agents",
+        "description": "List all saved agent connections.",
+        "operationId": "list_agents_api_evaluation_agents_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "manual-evaluation"
+        ],
+        "summary": "Save Agent",
+        "description": "Save a new agent connection.",
+        "operationId": "save_agent_api_evaluation_agents_post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/evaluation/agents/{agent_id}": {
+      "put": {
+        "tags": [
+          "manual-evaluation"
+        ],
+        "summary": "Update Agent",
+        "description": "Update an existing agent connection.",
+        "operationId": "update_agent_api_evaluation_agents__agent_id__put",
+        "parameters": [
+          {
+            "name": "agent_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Agent Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "manual-evaluation"
+        ],
+        "summary": "Delete Agent",
+        "description": "Delete a saved agent connection.",
+        "operationId": "delete_agent_api_evaluation_agents__agent_id__delete",
+        "parameters": [
+          {
+            "name": "agent_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Agent Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/evaluation/agents/{agent_id}/connect": {
+      "post": {
+        "tags": [
+          "manual-evaluation"
+        ],
+        "summary": "Connect Agent",
+        "description": "Connect to a saved agent.",
+        "operationId": "connect_agent_api_evaluation_agents__agent_id__connect_post",
+        "parameters": [
+          {
+            "name": "agent_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Agent Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/evaluation/agents/current": {
+      "get": {
+        "tags": [
+          "manual-evaluation"
+        ],
+        "summary": "Get Current Agent",
+        "description": "Get currently connected agent.",
+        "operationId": "get_current_agent_api_evaluation_agents_current_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/evaluation/agents/{agent_id}/scope": {
+      "get": {
+        "tags": [
+          "manual-evaluation"
+        ],
+        "summary": "Get Agent Scope",
+        "description": "Get the scope definition for an agent.\n\nReturns:\n    {\n        \"in_scope\": \"energy contracts, bills, SMART APP...\",\n        \"out_of_scope\": \"games, sports, weather...\"\n    }",
+        "operationId": "get_agent_scope_api_evaluation_agents__agent_id__scope_get",
+        "parameters": [
+          {
+            "name": "agent_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Agent Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/evaluation/industry-packs": {
+      "get": {
+        "tags": [
+          "manual-evaluation"
+        ],
+        "summary": "List Industry Packs",
+        "description": "List all available industry packs with activation status per user/agent.\n\nQuery params:\n    agent_id (required): Agent to check activation status for",
+        "operationId": "list_industry_packs_api_evaluation_industry_packs_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ErrorResponse": {
+        "properties": {
+          "error": {
+            "type": "string",
+            "title": "Error",
+            "description": "Short, safe error message."
+          },
+          "hint": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Hint",
+            "description": "Optional remediation hint."
+          }
+        },
+        "type": "object",
+        "required": [
+          "error"
+        ],
+        "title": "ErrorResponse",
+        "description": "Sanitized error envelope. Never contains key fragments or stack traces."
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "IngestBatchItemResult": {
+        "properties": {
+          "status": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Status"
+          },
+          "reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reason"
+          },
+          "trust_score": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trust Score"
+          },
+          "pass": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Pass"
+          },
+          "issues": {
+            "anyOf": [
+              {
+                "items": {},
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Issues"
+          },
+          "error": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error"
+          },
+          "message_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Message Id"
+          }
+        },
+        "additionalProperties": true,
+        "type": "object",
+        "title": "IngestBatchItemResult",
+        "description": "Per-conversation outcome within a batch response."
+      },
+      "IngestBatchRequest": {
+        "properties": {
+          "conversations": {
+            "items": {
+              "$ref": "#/components/schemas/IngestTurnRequest"
+            },
+            "type": "array",
+            "title": "Conversations",
+            "description": "Up to 100 turns to evaluate in one call."
+          }
+        },
+        "type": "object",
+        "title": "IngestBatchRequest",
+        "description": "Request for ``POST /api/v1/ingest/batch`` (max 100 conversations)."
+      },
+      "IngestBatchResponse": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "title": "Status",
+            "description": "Always 'evaluated' for a processed batch."
+          },
+          "results": {
+            "items": {
+              "$ref": "#/components/schemas/IngestBatchItemResult"
+            },
+            "type": "array",
+            "title": "Results"
+          },
+          "summary": {
+            "$ref": "#/components/schemas/IngestBatchSummary"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status"
+        ],
+        "title": "IngestBatchResponse"
+      },
+      "IngestBatchSummary": {
+        "properties": {
+          "total": {
+            "type": "integer",
+            "title": "Total",
+            "default": 0
+          },
+          "passed": {
+            "type": "integer",
+            "title": "Passed",
+            "default": 0
+          },
+          "failed": {
+            "type": "integer",
+            "title": "Failed",
+            "default": 0
+          },
+          "skipped_duplicates": {
+            "type": "integer",
+            "title": "Skipped Duplicates",
+            "default": 0
+          }
+        },
+        "type": "object",
+        "title": "IngestBatchSummary"
+      },
+      "IngestMetadata": {
+        "properties": {
+          "agent_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Agent Id",
+            "description": "Monitored agent this turn belongs to. Must belong to the account the API key is issued to. May also be supplied at the top level."
+          },
+          "response_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Response Id",
+            "description": "Upstream platform response id; used for turn deduplication."
+          },
+          "intent_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Intent Id",
+            "description": "Client-provided intent id, if known."
+          },
+          "intent": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Intent",
+            "description": "Client-provided intent display name, if known."
+          },
+          "language": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Language",
+            "description": "Language hint (e.g. 'en', 'fr'). Auto-detected when omitted."
+          },
+          "is_handover": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Is Handover",
+            "description": "True if this turn handed the conversation to a human agent."
+          },
+          "handover_flag": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Handover Flag",
+            "description": "Alias of is_handover for platforms that use this name."
+          }
+        },
+        "additionalProperties": true,
+        "type": "object",
+        "title": "IngestMetadata",
+        "description": "Optional per-turn metadata. Unknown keys are accepted and preserved."
+      },
+      "IngestResponse": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "title": "Status",
+            "description": "evaluated | skipped | duplicate"
+          },
+          "result": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/IngestResult"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Present when status == evaluated."
+          },
+          "reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reason",
+            "description": "Present when status == skipped."
+          },
+          "agent_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Agent Id",
+            "description": "Agent the turn was routed to, when known."
+          },
+          "message": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Message",
+            "description": "Human-readable note."
+          },
+          "message_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Message Id",
+            "description": "Present when status == duplicate."
+          }
+        },
+        "type": "object",
+        "required": [
+          "status"
+        ],
+        "title": "IngestResponse",
+        "description": "Response for ``POST /api/v1/ingest``.\n\n``status`` is one of ``evaluated`` (with ``result``), ``skipped`` (with a\n``reason``, e.g. monitoring inactive or a test session), or ``duplicate``\n(with ``message_id``)."
+      },
+      "IngestResult": {
+        "properties": {
+          "trust_score": {
+            "type": "number",
+            "title": "Trust Score",
+            "description": "Overall trust score for the turn (0-1).",
+            "default": 0.0
+          },
+          "issues": {
+            "items": {},
+            "type": "array",
+            "title": "Issues",
+            "description": "Guardrail issues detected, if any."
+          },
+          "pass": {
+            "type": "boolean",
+            "title": "Pass",
+            "description": "Whether the turn passed all enabled guardrails.",
+            "default": true
+          },
+          "guardrails_fired": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Guardrails Fired",
+            "description": "Ids of guardrails that fired for this turn."
+          }
+        },
+        "type": "object",
+        "title": "IngestResult",
+        "description": "The evaluation outcome for an accepted turn."
+      },
+      "IngestTurnRequest": {
+        "properties": {
+          "user_query": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "User Query",
+            "description": "REQUIRED. The end user's message for this turn."
+          },
+          "agent_response": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Agent Response",
+            "description": "REQUIRED. The chatbot's reply for this turn."
+          },
+          "session_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Session Id",
+            "description": "REQUIRED. Stable identifier for the chat session. Reuse the same value for every turn of a conversation; generate a UUID once per chat if your platform does not expose one."
+          },
+          "timestamp": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Timestamp",
+            "description": "ISO-8601 turn time. Defaults to the server receipt time when omitted."
+          },
+          "agent_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Agent Id",
+            "description": "Agent this turn belongs to. Alternative to metadata.agent_id."
+          },
+          "metadata": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/IngestMetadata"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Optional per-turn metadata."
+          }
+        },
+        "additionalProperties": true,
+        "type": "object",
+        "title": "IngestTurnRequest",
+        "description": "A single chatbot turn (a user message and the agent's reply) to evaluate."
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "ctx": {
+            "type": "object",
+            "title": "Context"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    },
+    "securitySchemes": {
+      "ClientApiKey": {
+        "type": "http",
+        "description": "Client API key issued from the Khai dashboard. Send as: Authorization: Bearer <api_key>",
+        "scheme": "bearer"
+      }
+    }
+  }
+}
