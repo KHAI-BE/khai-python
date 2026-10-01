@@ -5,6 +5,11 @@ All notable changes to the Khai Python SDK. Format follows
 
 ## [Unreleased]
 
+### Notes
+- The default `base_url` (`https://api.getkhai.ai`) is now domain-mapped and live.
+  Customers no longer need to set `KHAI_BASE_URL` or pass `base_url` explicitly
+  unless they are routing to a different backend (e.g., UAT).
+
 ### Added
 - Release pipeline (`.github/workflows/release.yml`): a `v*` tag builds once,
   publishes to TestPyPI, smoke-installs from there, then publishes to PyPI via
